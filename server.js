@@ -21,6 +21,10 @@ app.use(passport.session());
 
 require('./routes/authRoutes')(app);
 
+app.get('/', (req, res) => {
+  res.sedn({bye: 'Buddy'})
+});
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);
