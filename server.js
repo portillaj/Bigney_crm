@@ -1,18 +1,27 @@
 const express = require('express');
+const mongoose = require('mongoose');
+const cookieSession = require('cookie-session');
+const passport = require('passport');
+const keys = require('./config/keys');
+require('./models/User');
+require('./services/passport');
+
+mongoose.connect(keys.mongoURI);
 const app = express();
-const port = 5000;
 
-app.get("/api/customers", (req, res) => {
-  const customers = [
-    {id: 1, firstName: 'Jason', lastName: 'Portilla'},
-    {id: 2, firstName: 'Marilyn', lastName: 'Portilla'},
-    {id: 3, firstName: 'Noah', lastName: 'Portilla'},
-    {id: 4, firstName: 'Eliana', lastName: 'Portilla'}
-  ];
+app.use(
+  cookieSession({
+    maxAge: 30 * 24 * 60 * 60 * 1000,
+    keys: [keys.cookieKey]
+  })
+);
 
-  res.json(customers);
-});
+app.use(passport.initialize());
+app.use(passport.session());
 
-app.listen(port, () => {
-  console.log(`Server started on port ${port}`);
+require('./routes/authRoutes')(app);
+
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Server started on port ${PORT}`);
 });
