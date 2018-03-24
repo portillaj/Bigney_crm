@@ -1,0 +1,19 @@
+.login-background {
+  background-image: url("../../assets/images/login-background.png");
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+.login-box {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  background-color: white;
+  width: 500px;
+  height: 400px;
+  transform: translate(-50%,-50%);
+}
+.container {
+  padding: 0;
+}
