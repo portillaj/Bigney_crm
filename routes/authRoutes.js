@@ -1,7 +1,9 @@
 const passport = require('passport');
-
-const api = require('../services/passport');
+const passportService = require('../services/passport');
 const Authentication = require('../controllers/authentication');
+
+const requireAuth = passport.authenticate('jwt', { session: false});
+const requireSignin = passport.authenticate('local', { session: false});
 
 module.exports = (app) => {
     app.get(
@@ -23,7 +25,12 @@ module.exports = (app) => {
       });
   });
 
-app.get('/api/current_user', api.list);
-app.post('/register', Authentication.signup);
+app.get('/api/current_user', passportService.list);
+app.get('/test', requireAuth, function(req, res) {
+  res.send({hi: 'there'});
+});
+
+app.post('/signin', requireSignin, Authentication.signin);
+app.post('/signup', Authentication.signup);
 
 };
