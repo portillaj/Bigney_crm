@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import LoginContainer from './containers/Login/LoginContainer';
+import SigninContainer from './containers/Signin/SigninContainer';
 import { BrowserRouter, Route } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.css';
 
-import Register from './components/Register/Register';
+import RegisterContainer from './containers/Register/RegisterContainer';
+import Header from './components/Dashboard/Header';
 
 class App extends Component {
   render() {
@@ -10,9 +12,10 @@ class App extends Component {
       <div>
         <BrowserRouter>
           <div>
-            <Route exact path="/login" component={LoginContainer} />
-            <Route exact path="/register" component={Register} />
-            </div>
+            <Route exact path="/signin" component={SigninContainer} />
+            <Route exact path="/register" component={RegisterContainer} />
+            <Route exact path="/dashboard" component={Header} />
+          </div>
         </BrowserRouter>
       </div>
     );

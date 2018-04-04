@@ -7,12 +7,14 @@ function tokenForUser(user) {
     return jwt.encode({ sub: user.id, iat: timestamp }, config.secret);
 }
 
+//SIGN IN LOGIC
 exports.signin = function(req, res, next) {
     //user has already had their email and passowrd auth'd
     //we just need to give them a token
     res.send({ token: tokenForUser(req.user)});
 };
 
+//SIGN UP LOGIC
 exports.signup = function(req, res, next) {
     const email = req.body.email;
     const password = req.body.password;
