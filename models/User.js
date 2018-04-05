@@ -11,8 +11,7 @@ const userSchema = new Schema({
     unique: true,
     lowercase: true,
     trim: true
-  },
-  password: String
+  }
 });
 
 //On Save Hook, encrypt password

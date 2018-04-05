@@ -17,6 +17,7 @@
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.1",
+    "react-spinners": "^0.3.1",
     "redux": "^3.7.2",
     "redux-form": "^7.3.0"
   },
@@ -25,5 +26,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-plugin-es-beautifier": "^1.0.1"
   }
 }

@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { RingLoader } from 'react-spinners';
 import './Register.css';
 
 class Register extends Component {
+    constructor(props) {
+    super(props);
+    this.state = {
+      loading: true
+    }
+  }
   render() {
     return (
           <div className="signup__container">
@@ -52,6 +59,12 @@ class Register extends Component {
                     </div>
                 </form>  
             </div>
+             <div className='sweet-loading'>
+        <RingLoader
+          color={'#123abc'} 
+          loading={this.state.loading} 
+        />
+      </div>
             </div>
     );
   }
