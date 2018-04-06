@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import Proptypes from 'prop-types';
 import './Signin.css';
+import * as actions from '../../actions';
 
 import SigninField from './SigninField';
 import validateEmail from '../../utils/emailValidation';
@@ -13,6 +15,12 @@ const FIELDS = [
 ];
 
 class Signin extends Component {
+	handleFormSubmit({ email, password }) {
+			this.props.signinUser({ email, password },() => {
+				this.props.history.push('/dashboard');
+		});
+	};
+
 	renderFields() {
 		return FIELDS.map(({ label, name, type='text' }) => {
 			return <Field
@@ -33,7 +41,7 @@ render() {
 			<div className="form-container">
 					<form
 						className="form-group"
-						onSubmit={ handleSubmit(values => console.log(values)) }>
+						onSubmit={ handleSubmit(this.handleFormSubmit.bind(this))}>
 						{ this.renderFields() }
 						<button type="submit" className="signin-btn">Sign in</button>
 					</form>
@@ -62,7 +70,12 @@ function validate(values) {
 	return errors;
 }
 
-export default reduxForm({ 
+function mapStateToProps(state) {
+	return { errorMessage: state.auth.error };
+}
+
+Signin = reduxForm({
 	validate,
 	form: 'signin' 
 })(Signin);
+export default Signin = connect(mapStateToProps, actions)(withRouter(Signin));

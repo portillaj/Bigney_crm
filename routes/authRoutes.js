@@ -26,8 +26,8 @@ module.exports = (app) => {
   });
 
 app.get('/api/current_user', passportService.list);
-app.get('/test', requireAuth, function(req, res) {
-  res.send({hi: 'there'});
+app.get('/', requireAuth, function(req, res) {
+  res.send({message: 'Super secret code is ABC123'});
 });
 
 app.post('/signin', requireSignin, Authentication.signin);
