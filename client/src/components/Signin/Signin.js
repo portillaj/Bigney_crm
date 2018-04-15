@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
 import { Link, withRouter } from 'react-router-dom';
-import Proptypes from 'prop-types';
 import './Signin.css';
 import * as actions from '../../actions';
 
@@ -11,25 +10,35 @@ import validateEmail from '../../utils/emailValidation';
 
 const FIELDS = [
 	{ label: "Email", name: "email", type: "email", noValueError: 'You must provide a email' }, 
-	{ label: "Password", name: "password", noValueError: 'You must provide a password' }
+	{ label: "Password", name: "password", type: "password", noValueError: 'You must provide a password' }
 ];
 
 class Signin extends Component {
 	handleFormSubmit({ email, password }) {
 			this.props.signinUser({ email, password },() => {
-				this.props.history.push('/dashboard');
+			this.props.history.push('/dashboard');
 		});
 	};
 
 	renderFields() {
-		return FIELDS.map(({ label, name, type='text' }) => {
+		return FIELDS.map(({ label, name, type }) => {
 			return <Field
-				key={name}
-				component={SigninField}
-				type={type}
-				label={label}
-				name={name}/>
+				key={ name }
+				type={ type }
+				component={ SigninField }
+				label={ label }
+				name={ name }/>
 	});
+}
+
+renderAlert() {
+	if(this.props.errorMessage) {
+		return(
+			<div className="alert alert-danger">
+				<strong>Oops!</strong>{ this.props.errorMessage }
+				</div>
+		);
+	}
 }
 
 render() {
@@ -43,6 +52,7 @@ render() {
 						className="form-group"
 						onSubmit={ handleSubmit(this.handleFormSubmit.bind(this))}>
 						{ this.renderFields() }
+						{ this.renderAlert() }
 						<button type="submit" className="signin-btn">Sign in</button>
 					</form>
 					<p className="text-center text-light">Don't have an account?
@@ -70,12 +80,8 @@ function validate(values) {
 	return errors;
 }
 
-function mapStateToProps(state) {
-	return { errorMessage: state.auth.error };
-}
-
 Signin = reduxForm({
 	validate,
 	form: 'signin' 
 })(Signin);
-export default Signin = connect(mapStateToProps, actions)(withRouter(Signin));
+export default Signin = connect(null, actions)(withRouter(Signin));

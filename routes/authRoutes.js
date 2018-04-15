@@ -1,7 +1,7 @@
 const passport = require('passport');
 const passportService = require('../services/passport');
 const Authentication = require('../controllers/authentication');
-
+const User = require ('../models/User.js');
 const requireAuth = passport.authenticate('jwt', { session: false});
 const requireSignin = passport.authenticate('local', { session: false});
 
@@ -14,20 +14,21 @@ module.exports = (app) => {
 );
 
   //callback route for google
-  app.get('/auth/google/callback', passport.authenticate('google'));
+  app.get('/auth/google/callback', 
+    passport.authenticate('google'),
+    (req, res) => {
+      res.redirect('/dashboard'); 
+    }
+  );
 
   //logging out of application
   app.get('/api/logout', (req, res) => {
+    console.log('this was called');
     req.logout();
-    User.findAll()
-      .then((users) => {
-        res.send(req.users)
-      });
   });
 
-app.get('/api/current_user', passportService.list);
-app.get('/', requireAuth, function(req, res) {
-  res.send({message: 'Super secret code is ABC123'});
+app.get('/api/current_user', (req, res) => {
+  res.send(req.user);
 });
 
 app.post('/signin', requireSignin, Authentication.signin);

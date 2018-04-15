@@ -1,20 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import './Header.css';
 
-class Header extends Component {
-    render() {
-        return (
-            <div className="navbar navbar-light">
-            <ul className="nav navbar-nav">
-                <li className="nav-item">
-                    Signin
-                </li>
-            </ul>
+const Header = (props) => {
 
-            </div>
-        );
-    }
+	return (
+		<div className="navbar navbar-light">
+			<div className="navbar-brand">The Law Hub</div>
+		<ul className="nav navbar-nav">
+			{ props.renderLinks }
+		</ul>
+		</div>
+	);
 }
 
 export default Header;

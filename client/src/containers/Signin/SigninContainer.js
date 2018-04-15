@@ -5,10 +5,6 @@ import Signin from '../../components/Signin/Signin';
 import './SigninContainer.css';
 
 class SigninContainer extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <div className="signin-background">
