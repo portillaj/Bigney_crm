@@ -1,4 +1,4 @@
-.signin-form {
+.signinForm {
     position: absolute;
     left: 50%;
     top: 50%;
@@ -8,7 +8,7 @@
     width: 100%;
 }
 
-.signin-header {
+.signinHeader {
     padding: 20px;
     background-color: rgba(32, 32, 29, .7);
     color: floralwhite;
@@ -16,7 +16,7 @@
     margin: 0 auto;
 }
 
-.form-container {
+.formContainer {
     background: rgba(52, 52, 52, .6);
     margin-top: -10px;
     padding: 20px;
@@ -24,7 +24,7 @@
     margin: 0 auto;
 }
 
-.signin-btn {
+.signinBtn {
     display: block;
     width: 100%;
     background-color: #00758E;
@@ -36,16 +36,16 @@
     border-radius: 3px;
 }
 
-.signin-btn:hover {
+.signinBtn:hover {
     background: white;
     color: #00758E;
 }
 
-.register-here a {
+.registerHere a {
     color: #FE4B4B;
     margin-left: 10px;
 }
 
-.register-here a:hover P{
+.registerHere a:hover P{
     color: white;
 }

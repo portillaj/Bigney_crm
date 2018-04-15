@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
 import { Link, withRouter } from 'react-router-dom';
-import './Signin.css';
+import classes from './Signin.css';
+import Bootstrap from 'bootstrap/dist/css/bootstrap.css';
 import * as actions from '../../actions';
 
 import SigninField from './SigninField';
@@ -34,7 +35,7 @@ class Signin extends Component {
 renderAlert() {
 	if(this.props.errorMessage) {
 		return(
-			<div className="alert alert-danger">
+			<div className={Bootstrap['alert alert-danger']}>
 				<strong>Oops!</strong>{ this.props.errorMessage }
 				</div>
 		);
@@ -45,25 +46,25 @@ render() {
 	const { handleSubmit } = this.props;
 
 	return (
-		<div className="signin-form">
-			<h2 className="text-center signin-header">Welcome To the Law Hub</h2>
-			<div className="form-container">
+		<div className={classes.signinForm}>
+			<h2 className={`${Bootstrap['text-center']} ${classes.signinHeader}`}>Welcome To the Law Hub</h2>
+			<div className={classes.formContainer}>
 					<form
-						className="form-group"
+						className={Bootstrap['form-group']}
 						onSubmit={ handleSubmit(this.handleFormSubmit.bind(this))}>
 						{ this.renderFields() }
 						{ this.renderAlert() }
-						<button type="submit" className="signin-btn">Sign in</button>
+						<button type="submit" className={classes.signinBtn}>Sign in</button>
 					</form>
-					<p className="text-center text-light">Don't have an account?
-						<span className="register-here">
+					<p className={`${Bootstrap['text-center']} ${Bootstrap['text-light']}`}>Don't have an account?
+						<span className={classes.registerHere}>
 							<Link to="/register">Register Here</Link>
 						</span>
 					</p>
 			</div>
 		</div>
 	);
-}
+	}
 }
 
 function validate(values) {

@@ -1,0 +1,23 @@
+.leftNav {
+  background-color: red;
+  height: 1000px;
+}
+
+.mainSection {
+  background-color: yellow;
+  height: 1000px;
+}
+
+.dashHeader {
+  background-color: pink;
+}
+
+.dashLeftHeader {
+  background-color: green;
+  height: 75px;
+}
+
+.dashMainHeader {
+  background-color: blue;
+  height: 75px;
+}

@@ -1,6 +1,7 @@
 {
+  "extends": ["airbnb"],
   "rules": {
-    "quotes": [ 2, "double" ],
+    "quotes": [2, "double"],
     "closingSlash": "never",
     "beforeSelfClosing": "always",
     "afterOpening": "never",
@@ -9,10 +10,10 @@
 
   "overrides": [
     {
-      "files": [ "bin/*.js", "lib/*.js" ],
+      "files": ["bin/*.js", "lib/*.js"],
       "excludedFiles": "*.test.js",
       "rules": {
-        "quotes": [ 2, "single" ]
+        "quotes": [2, "single"]
       }
     }
   ]
