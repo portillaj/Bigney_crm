@@ -1,4 +1,22 @@
 .navMenu {
   list-style: none;
   color: white;
+  padding: 0;
+}
+
+.navItem {
+  padding: 15px;
+}
+
+.navItem:first-child {
+  margin-top: 25px;
+}
+
+.navItem:hover {
+  background-color: #45b4c5;
+  transition-duration: 0.3s;
+}
+
+.icons {
+  margin-right: 20px;
 }

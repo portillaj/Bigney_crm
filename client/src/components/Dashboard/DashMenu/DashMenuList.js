@@ -5,7 +5,10 @@ const DashMenuList = props => {
   const navMenu = props.sidebarList.map(item => {
     return (
       <ul className={classes.navMenu}>
-        <li>{item}</li>
+        <li className={classes.navItem}>
+          <i className={`${item.icon} ${classes.icons}`} />
+          {item.name}
+        </li>
       </ul>
     );
   });
